@@ -1,0 +1,117 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.device-info,
+.account-info {
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 5px; /* Gap between items */
+  }
+}
+
+.account-info button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.sync-method button {
+  margin-right: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-list p {
+  margin: 5px 0;
+}
+
+.map {
+  margin-top: 10px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+button {
+  margin-top: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  .diagram {
+    height: 20px;
+    background-color: #007bff;
+    margin-left: 10px;
+  }
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .map img {
+    max-width: 100%;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
+
+.most-calling-contacts .contacts-list {
+  display: flex;
+  flex-direction: column;
+
+  .contact {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 5px 0;
+    }
+
+    .diagram {
+      background-color: #007bff;
+    }
+  }
+}

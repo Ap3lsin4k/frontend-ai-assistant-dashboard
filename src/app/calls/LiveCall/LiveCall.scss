@@ -1,0 +1,22 @@
+.live-call_area {
+  font-size: 40px;
+  height: 200px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.conversation {
+  opacity: 0;
+  animation: appear 1s steps(60, end) forwards;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
