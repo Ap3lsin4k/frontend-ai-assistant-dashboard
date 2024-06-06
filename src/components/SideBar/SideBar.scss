@@ -1,0 +1,21 @@
+.side-bar_nav {
+  background-color: #232839;
+  height: 100%;
+  padding-top: 30px;
+
+  .nav-entry {
+    display: flex;
+    color: aliceblue;
+    padding: 10px 30px;
+    margin-right: 10px;
+    text-decoration: none;
+    gap: 10px;
+    border-radius: 0 30px 30px 0;
+
+    &.current {
+      background-color: #2f354b;
+      color: #bccaff;
+      font-weight: bold;
+    }
+  }
+}
