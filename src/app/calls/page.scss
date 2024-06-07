@@ -49,16 +49,18 @@
       width: 100%;
       background-color: #fff;
       border-radius: 15px;
-      box-shadow: 1px 2px 4px 0px rgb(47 53 75 / 12%);
+      box-shadow: 1px 2px 4px 0 rgb(47 53 75 / 12%);
       padding: 15px 10px;
       text-align: center;
       font-size: 24px;
       margin-bottom: 10px;
+      align-items: center;
 
       .cell-score {
         font-weight: bold;
-        margin: 0px 31px;
+        width: 60px;
         border-radius: 30px;
+        margin: 0 auto;
 
         &.red {
           background-color: #ffe3e3;
@@ -79,7 +81,7 @@
         .table_btv {
           background-color: #bccaff;
           border-radius: 10px;
-          box-shadow: 1px 2px 4px 0px #2f354b4a;
+          box-shadow: 1px 2px 4px 0 #2f354b4a;
           cursor: pointer;
           padding: 3px 10px;
 

@@ -11,7 +11,8 @@
 }
 
 aside {
-  width: 300px;
+  width: 250px;
+  position: fixed;
   height: 100vh;
 }
 
@@ -19,4 +20,6 @@ main {
   width: 100%;
   background: #eff1f6;
   padding: 20px;
+  margin-left: 250px;
+  min-height: 100vh;
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./page.scss";
 
 import { MdOutlineDateRange } from "react-icons/md";
@@ -13,6 +13,7 @@ interface RowDataType {
   score: number;
   group: string | null;
   transcript: string | null;
+  audio: string | undefined;
 }
 
 const rowData: RowDataType[] = [
@@ -22,6 +23,8 @@ const rowData: RowDataType[] = [
     score: 5,
     group: null,
     transcript: "In progress ...",
+    audio:
+      "https://actions.google.com/sounds/v1/human_voices/pa_announcement_close.ogg",
   },
   {
     date: "06/06/2024 1:14 pm",
@@ -29,6 +32,7 @@ const rowData: RowDataType[] = [
     score: 9,
     group: "Trusted",
     transcript: null,
+    audio: undefined,
   },
   {
     date: "06/06/2024 1:15 pm",
@@ -36,20 +40,25 @@ const rowData: RowDataType[] = [
     score: 8,
     group: "Trusted",
     transcript: null,
+    audio: undefined,
   },
   {
     date: "06/06/2024 1:16 pm",
     number: "+6666-6666-66666",
     score: 7,
     group: "White list",
-    transcript: "Test 2:-Hi my name is Andy. -Hi, Andy.",
+    transcript: "Breathing. ",
+    audio:
+      "https://actions.google.com/sounds/v1/human_voices/human_breathing_mouth.ogg",
   },
   {
     date: "06/06/2024 1:17 pm",
     number: "+7777-7777-77777",
     score: 6,
     group: "White list",
-    transcript: "Test 3: -Hi my name is Andy. -Hi, Andy. ",
+    transcript: "Breathing ",
+    audio:
+      "https://actions.google.com/sounds/v1/human_voices/death_rattle_breath.ogg",
   },
 ];
 
@@ -84,7 +93,7 @@ export default function Page() {
 }
 
 const TableRow = ({ rowData }: { rowData: RowDataType }) => {
-  const { date, number, score, group, transcript } = rowData;
+  const { date, number, score, group, transcript, audio } = rowData;
   const [showTranscript, setShowTranscript] = useState(false);
   const [clickedText, setClickedText] = useState<string | null>(null);
 
@@ -130,7 +139,7 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
           {showTranscript && (
             <div className="cell transcript">
               <div>{transcript}</div>
-              <audio controls src="/testaudio.mp4">
+              <audio controls src={audio}>
                 Your browser does not support the <code>audio</code> element.
               </audio>
             </div>

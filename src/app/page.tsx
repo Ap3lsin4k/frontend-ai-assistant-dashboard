@@ -56,7 +56,7 @@ export default function Home() {
       </div>
       <div className="card sync-method">
         <h2>Synchronization method:</h2>
-        <button>Don`&apos;`t Sync</button>
+        <button>Dont Sync</button>
         <button>Wi-Fi Only</button>
         <button>All Connections</button>
       </div>
@@ -84,7 +84,7 @@ export default function Home() {
         <p>102 Berwick St, London W1F 0PH, UK</p>
         <div className="map">
           <Image
-            src="/map.png"
+            src="https://i.ibb.co/2YwdjS1/map.png"
             alt="Map"
             fill
             sizes="(min-width: 808px) 50vw, 100vw"
