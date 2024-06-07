@@ -1,13 +1,13 @@
 import "./page.scss";
 import {
   FaMobile,
-  FaAndroid,
   FaBatteryQuarter,
   FaWifi,
   FaMapMarkerAlt,
   FaUser,
   FaCalendarPlus,
 } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
       <div className="card sync-method">
         <h2>Synchronization method:</h2>
-        <button>Don't Sync</button>
+        <button>Don`&apos;`t Sync</button>
         <button>Wi-Fi Only</button>
         <button>All Connections</button>
       </div>
@@ -83,7 +83,15 @@ export default function Home() {
         <h2>Locations</h2>
         <p>102 Berwick St, London W1F 0PH, UK</p>
         <div className="map">
-          <img src="/map.png" alt="Map" />
+          <Image
+            src="/map.png"
+            alt="Map"
+            fill
+            sizes="(min-width: 808px) 50vw, 100vw"
+            style={{
+              objectFit: "cover", // cover, contain, none
+            }}
+          />
         </div>
         <button>See More</button>
       </div>
