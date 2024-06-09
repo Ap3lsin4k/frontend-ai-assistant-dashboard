@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import "./LiveCall.scss"; // Import your CSS file for styling
 

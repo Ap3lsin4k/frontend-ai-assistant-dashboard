@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.scss";
 import SideBar from "@/components/SideBar/SideBar";
+import Header from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "Sound app",
@@ -16,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Header />
         <div className="layout">
           <aside>
             <SideBar />

@@ -1,38 +1,81 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { IoCall } from "react-icons/io5";
-import { RiDashboardFill } from "react-icons/ri";
+import { useState } from "react";
+import { IoCall, IoHomeOutline } from "react-icons/io5";
+import { RiContactsBook2Fill, RiGpsFill, RiGroupFill } from "react-icons/ri";
 import { SiChatbot } from "react-icons/si";
+import { FiMessageSquare } from "react-icons/fi";
+import { GiLifeBuoy } from "react-icons/gi";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import NavLink from "./NavLink";
 import "./SideBar.scss";
-import Link from "next/link";
 
 export default function SideBar() {
-  const pathname = usePathname();
+  const [showCallsDropdown, setShowCallsDropdown] = useState(false);
+
+  const toggleCallsDropdown = () => {
+    setShowCallsDropdown(!showCallsDropdown);
+  };
+
   return (
     <nav className="side-bar_nav">
-      <Link
-        href="/"
-        className={`nav-entry ${pathname === "/" ? "current" : ""}`}
-      >
-        <RiDashboardFill />
-        <p>Dashbord</p>
-      </Link>
-      <Link
-        href="/calls"
-        className={`nav-entry ${pathname === "/calls" ? "current" : ""}`}
-      >
-        <IoCall />
-        <p>Calls</p>
-      </Link>
-
-      <Link
-        href="/chatbot"
-        className={`nav-entry ${pathname === "/chatbot" ? "current" : ""}`}
-      >
+      <NavLink path="/">
+        <IoHomeOutline />
+        <p>Home</p>
+      </NavLink>
+      <div className=" calls-dropdown">
+        <button
+          onClick={toggleCallsDropdown}
+          className={`nav-entry calls-btn ${showCallsDropdown ? "active" : ""}`}
+        >
+          <IoCall />
+          <p>Calls</p>
+          <MdKeyboardArrowRight
+            className={`arrow ${showCallsDropdown ? "rotate" : ""}`}
+          />
+        </button>
+        {showCallsDropdown && (
+          <div className="dropdown-content">
+            <NavLink path="/calls">
+              <p>Incoming calls</p>
+            </NavLink>
+            <NavLink path="/calls/outgoing">
+              <p>Outgoing calls</p>
+            </NavLink>
+          </div>
+        )}
+      </div>
+      <NavLink path="/sms">
+        <FiMessageSquare />
+        <p>SMS</p>
+      </NavLink>
+      <NavLink path="/address-book">
+        <RiContactsBook2Fill />
+        <p>Address Book</p>
+      </NavLink>
+      <NavLink path="/trusted-group">
+        <RiGroupFill />
+        <p>Trusted Group</p>
+      </NavLink>
+      <NavLink path="/allowed-list">
+        <RiGroupFill />
+        <p>Allowed List</p>
+      </NavLink>
+      <NavLink path="/location">
+        <RiGpsFill />
+        <p>Location</p>
+      </NavLink>
+      <NavLink path="/chatbot">
         <SiChatbot />
-        <p>Chatbot</p>
-      </Link>
+        <p>AI Assistant</p>
+      </NavLink>
+      <NavLink path="/sos">
+        <GiLifeBuoy />
+        <p>SOS</p>
+      </NavLink>
+      <div className="nav-entry privacy-legal">
+        <p>Privacy & legal</p>
+      </div>
     </nav>
   );
 }

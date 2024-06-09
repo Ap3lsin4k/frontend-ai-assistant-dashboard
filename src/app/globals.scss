@@ -13,7 +13,8 @@
 aside {
   width: 250px;
   position: fixed;
-  height: 100vh;
+  height: calc(100vh - 60px); // Adjust height to account for fixed header
+  top: 60px; // Adjust for fixed header height
 }
 
 main {
@@ -21,5 +22,35 @@ main {
   background: #eff1f6;
   padding: 20px;
   margin-left: 250px;
-  min-height: 100vh;
+  margin-top: 60px; // Adjust for fixed header height
+  min-height: calc(100vh - 60px); // Adjust for fixed header height
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+  text-align: center;
+
+  p {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+  a {
+    color: #0070f3;
+    text-decoration: none;
+    font-size: 18px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    margin-bottom: 20px;
+  }
 }
