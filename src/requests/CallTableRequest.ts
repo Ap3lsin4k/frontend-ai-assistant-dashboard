@@ -5,7 +5,6 @@ export const getCallsHistory = async () => {
     const res = await fetch("https://34.116.142.38/api/conversations/");
 
     const data = await res.json();
-    console.log(data);
 
     const rowData: RowDataType[] = data.map((call: any) => ({
       date: call.timestamp,

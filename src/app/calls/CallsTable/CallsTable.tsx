@@ -83,9 +83,9 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
           {showTranscript && (
             <div className="cell transcript">
               <div>
-                {transcript.map((el) => {
+                {transcript.map((el, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <span className="transcribe_title">{el.from_}: </span>
                       <span>{el.content}</span>
                     </div>
