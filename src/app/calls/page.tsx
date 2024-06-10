@@ -6,13 +6,12 @@ import { getCallsHistory } from "@/requests/CallTableRequest";
 export default async function Page() {
   const rowData = await getCallsHistory();
 
-  const filteredRowData = rowData.filter((el) => el.status !== "active");
+  const filteredRowData = rowData.filter((el) => el.status !== "active"); // TODO!: change to filtered
 
   return (
     <div className="calls-page">
-      <h1>TellmePIN...</h1>
       <LiveCall />
-      <CallsTable rowData={filteredRowData} />
+      <CallsTable rowData={rowData} />
     </div>
   );
 }

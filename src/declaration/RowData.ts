@@ -2,7 +2,7 @@ export interface RowDataType {
   date: string;
   number: string;
   threat: number;
-  group: string | null;
+  group: "Allowed list" | null;
   status: "finished" | "active";
   transcript: [
     {

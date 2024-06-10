@@ -5,6 +5,8 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { FaMicrophone, FaUserCheck } from "react-icons/fa";
 import { useState } from "react";
 import { RowDataType } from "@/declaration/RowData";
+import DateTimeDisplay from "@/app/calls/CallsTable/DateTimeDisplay";
+import { addNumberToAllowed } from "@/requests/CallTableRequest";
 
 export default function CallsTable({ rowData }: { rowData: RowDataType[] }) {
   return (
@@ -41,7 +43,9 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
     setShowTranscript(!showTranscript);
   };
 
-  const handleClick = (text: string) => {
+  const handleClick = async (text: string, number: string) => {
+    await addNumberToAllowed(number);
+
     setClickedText(text);
   };
 
@@ -58,17 +62,20 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
         {group ? (
           <div>{group}</div>
         ) : clickedText ? (
-          <div>{clickedText}</div> //  TODO!: add request to move number to allowed list
+          <div>{clickedText}</div> //  TODO!: add text from group field
         ) : (
           <>
-            <div className="table_btv" onClick={() => handleClick("Trusted")}>
+            <div
+              className="table_btv"
+              onClick={() => handleClick("Trusted", number)}
+            >
               Trusted
             </div>
             <div
               className="table_btv"
-              onClick={() => handleClick("White list")}
+              onClick={() => handleClick("Allowed list", number)}
             >
-              White list
+              Allowed
             </div>
           </>
         )}
@@ -82,7 +89,7 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
           </div>
           {showTranscript && (
             <div className="cell transcript">
-              <div>
+              <div className="transcribe-wrap">
                 {transcript.map((el, index) => {
                   return (
                     <div key={index}>
@@ -100,29 +107,5 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
         </>
       )}
     </div>
-  );
-};
-
-const DateTimeDisplay = ({ date }: { date: string }) => {
-  const formattedTime = new Date(date);
-
-  const formattedDate = formattedTime.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
-  const formattedHours = formattedTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  return (
-    <span className="cell-date">
-      {formattedDate}
-      {"   "}
-      {formattedHours}
-    </span>
   );
 };

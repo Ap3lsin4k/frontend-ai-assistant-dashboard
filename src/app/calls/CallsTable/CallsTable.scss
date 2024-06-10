@@ -104,10 +104,16 @@
         }
       }
 
-      .transcribe_title {
-        color: #054666;
-        font-weight: 600;
-        padding-left: 20px;
+      .transcribe-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .transcribe_title {
+          color: #054666;
+          font-weight: 600;
+          padding-left: 20px;
+        }
       }
 
       audio {
