@@ -1,8 +1,12 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.scss";
 
 export default function NotFound() {
+  const pathname = usePathname();
   return (
     <div className="not-found-container">
       <Image
@@ -10,8 +14,11 @@ export default function NotFound() {
         alt="Loading..."
         width={50}
         height={50}
+        className="loading-gif"
       />
-      <p>This page is under development</p>
+      <p>
+        The <b>{pathname}</b> page is under development
+      </p>
       <Link href="/">Return Home</Link>
     </div>
   );

@@ -55,7 +55,7 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
         <DateTimeDisplay date={date} />
       </div>
       <div>{number}</div>
-      <div className={`cell-score ${threat > 5 ? "green" : "red"}`}>
+      <div className={`cell-score ${threat < 8 ? "green" : "red"}`}>
         {threat}
       </div>
       <div className="btn-wrapper">

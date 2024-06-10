@@ -5,6 +5,9 @@
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  margin-bottom: 20px;
+}
 .layout {
   display: flex;
   flex-direction: row;
@@ -33,6 +36,20 @@ main {
   align-items: center;
   height: calc(100vh - 100px);
   text-align: center;
+
+  .loading-gif {
+    animation: rotating 2s linear infinite;
+    -webkit-animation: rotating 2s linear infinite; /* Safari and older browsers */
+  }
+
+  @keyframes rotating {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
 
   p {
     margin: 20px 0;

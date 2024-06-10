@@ -10,6 +10,7 @@ export default async function Page() {
 
   return (
     <div className="calls-page">
+      <h1>Incoming calls page</h1>
       <LiveCall />
       <CallsTable rowData={rowData} />
     </div>
