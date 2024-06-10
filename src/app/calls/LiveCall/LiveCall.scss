@@ -1,22 +1,27 @@
+.live-call_placeholder {
+  font-size: 28px;
+  padding-bottom: 20px;
+  color: #4a4a4a;
+}
+
 .live-call_area {
   font-size: 40px;
-  height: 300px;
+  height: 0;
   background-color: #fff;
   margin-bottom: 20px;
   padding: 10px;
   overflow-y: scroll;
-}
+  animation: expand 0.5s ease forwards;
 
-.conversation {
-  opacity: 0;
-  animation: appear 1s steps(60, end) forwards;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
+  .live-call_from {
+    color: #054666;
+    font-weight: 600;
+    padding-left: 20px;
   }
+}
+
+@keyframes expand {
   to {
-    opacity: 1;
+    height: 300px;
   }
 }

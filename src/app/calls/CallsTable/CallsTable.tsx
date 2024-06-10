@@ -11,6 +11,7 @@ import { addNumberToAllowed } from "@/requests/CallTableRequest";
 export default function CallsTable({ rowData }: { rowData: RowDataType[] }) {
   return (
     <div className="calls-table">
+      <div className="table-name">Calls history</div>
       <div className="table-header">
         <div>
           <MdOutlineDateRange />

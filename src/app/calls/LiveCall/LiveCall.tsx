@@ -1,67 +1,74 @@
 "use client";
+import "./LiveCall.scss";
+import React, { useEffect, useState } from "react";
 
-import React, { useState, useEffect, useRef } from "react";
-import "./LiveCall.scss"; // Import your CSS file for styling
+interface Message {
+  from_: string;
+  content: string;
+}
 
-const ConversationSimulator = () => {
-  const [conversation, setConversation] = useState<string[]>([]);
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const conversationRef = useRef<HTMLDivElement>(null);
-
-  // Simulate a conversation
-  const simulateConversation = () => {
-    const conversation = [
-      "Mrs. Jenkins: Hello?",
-      "Mr. Smith: Good morning, ma'am. This is Mr. Smith calling from the Social Security Administration. We've detected some suspicious activity on your account and need to verify your information to prevent any further issues.",
-      "Mrs. Jenkins: Oh my! What sort of activity?",
-      "Mr. Smith: It appears that your Social Security number has been compromised and has been linked to several fraudulent activities. To rectify this, we need to verify your identity. Can you please provide me with your Social Security number and other personal details?",
-      "Mrs. Jenkins: Oh dear! But how can I be sure you're really from the Social Security Administration?",
-      "Mr. Smith: Ma'am, I understand your concern, but rest assured, this is a matter of utmost urgency. We can't delay in resolving this issue. Now, could you please provide me with your information?",
-      "Mrs. Jenkins: Well, I'm not comfortable giving out such sensitive information over the phone. Is there any other way we can verify this?",
-    ];
-    setConversation(conversation);
-  };
+const App: React.FC = () => {
+  const [liveText, setLiveText] = useState<Message[]>([]);
+  const [message, setMessage] = useState<Message | null>(null);
 
   useEffect(() => {
-    // Start simulating conversation when component mounts
-    simulateConversation();
-  }, []);
+    const ws = new WebSocket("wss://34.116.142.38/api/conversations/stream");
 
-  useEffect(() => {
-    // Update current message index at intervals to simulate live conversation
-    const interval = setInterval(() => {
-      setCurrentMessageIndex((prevIndex) =>
-        prevIndex < conversation.length - 1 ? prevIndex + 1 : prevIndex,
-      );
-    }, 3000); // Change the interval to control the speed of the conversation
+    ws.onmessage = (event) => {
+      try {
+        const data: Message = JSON.parse(event.data);
+        console.log("Received from SERVER ::", data);
+        setMessage(data);
 
-    // Clear interval on component unmount
-    return () => clearInterval(interval);
-  }, [conversation]);
+        if (data.from_ === "system" && data.content === "NEXTMESSAGE") {
+          setLiveText((prevLiveText) => [
+            ...prevLiveText,
+            { from_: message?.from_ || "", content: message?.content || "" },
+          ]);
+        }
+      } catch (error) {
+        console.error("Error parsing message:", error);
+      }
+    };
 
-  // Scroll to the bottom of the conversation
-  useEffect(() => {
-    if (conversationRef.current) {
-      conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
-    }
-  }, [currentMessageIndex]);
+    ws.onopen = () => {
+      console.log("WebSocket connection established");
+    };
 
-  // Render the entire conversation up to the current message index
-  const renderConversation = () => {
-    return conversation
-      .slice(0, currentMessageIndex + 1)
-      .map((message, index) => (
-        <div key={index} className="conversation">
-          {message}
-        </div>
-      ));
-  };
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, [message]);
 
   return (
-    <div className="live-call_area" ref={conversationRef}>
-      {renderConversation()}
+    <div>
+      {/*{liveText.length === 0 ? (*/}
+      {/*  <span className="live-call_placeholder">No income call</span>*/}
+      {/*) : (*/}
+      <div className="live-call_area">
+        {liveText.map((msg, index) => (
+          <div key={index}>
+            <span className="live-call_from">{msg.from_}:</span>{" "}
+            <span dangerouslySetInnerHTML={{ __html: msg.content }} />
+          </div>
+        ))}
+        {message && message.from_ !== "system" && (
+          <div>
+            <span className="live-call_from">{message.from_}:</span>{" "}
+            {message.content}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default ConversationSimulator;
+export default App;
