@@ -5,7 +5,7 @@ export const getCallsHistory = async () => {
     const res = await fetch(
       "https://prototypebe.mavn.ai:7000/api/conversations/",
       {
-        cache: "no-store",
+        next: { revalidate: 1 },
       },
     );
 
