@@ -12,7 +12,9 @@ const App: React.FC = () => {
   const [message, setMessage] = useState<Message | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket("wss://34.116.142.38/api/conversations/stream");
+    const ws = new WebSocket(
+      "wss://prototypebe.mavn.ai:7000/api/conversations/stream",
+    );
 
     ws.onmessage = (event) => {
       try {
