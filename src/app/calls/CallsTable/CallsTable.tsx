@@ -6,7 +6,11 @@ import { FaMicrophone, FaUserCheck } from "react-icons/fa";
 import { useState } from "react";
 import { RowDataType } from "@/declaration/RowData";
 import DateTimeDisplay from "@/app/calls/CallsTable/DateTimeDisplay";
-import { addNumberToAllowed } from "@/requests/CallTableRequest";
+import {
+  addNumberToAllowed,
+  addNumberToTrusted,
+} from "@/requests/CallTableRequest";
+import { useRouter } from "next/navigation";
 
 export default function CallsTable({ rowData }: { rowData: RowDataType[] }) {
   return (
@@ -38,16 +42,20 @@ export default function CallsTable({ rowData }: { rowData: RowDataType[] }) {
 const TableRow = ({ rowData }: { rowData: RowDataType }) => {
   const { date, number, threat, group, transcript, audio } = rowData;
   const [showTranscript, setShowTranscript] = useState(false);
-  const [clickedText, setClickedText] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleShowClick = () => {
     setShowTranscript(!showTranscript);
   };
 
   const handleClick = async (text: string, number: string) => {
-    await addNumberToAllowed(number);
+    if (text == "Trust") {
+      await addNumberToAllowed(number);
+    } else {
+      await addNumberToTrusted(number);
+    }
 
-    setClickedText(text + "ed group");
+    router.refresh();
   };
 
   return (
@@ -60,10 +68,10 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
         {threat}
       </div>
       <div className="btn-wrapper">
-        {group ? (
-          <div>{group}</div>
-        ) : clickedText ? (
-          <div>{clickedText}</div> //  TODO!: add text from group field
+        {group !== "stranger" ? (
+          <div>
+            {group === "allowed_list" ? "Allowed group" : "Trusted group"}
+          </div>
         ) : (
           <>
             <div
