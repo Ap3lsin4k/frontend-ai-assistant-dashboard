@@ -3,7 +3,7 @@ import { RowDataType } from "@/declaration/RowData";
 export const getCallsHistory = async () => {
   try {
     const res = await fetch("https://34.116.142.38/api/conversations/", {
-      next: { revalidate: 5 },
+      cache: "no-store",
     });
 
     const data = await res.json();

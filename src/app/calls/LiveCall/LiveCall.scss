@@ -5,13 +5,13 @@
 }
 
 .live-call_area {
-  font-size: 40px;
+  font-size: 28px;
   height: 0;
   background-color: #fff;
   margin-bottom: 20px;
   padding: 10px;
   overflow-y: scroll;
-  animation: expand 0.5s ease forwards;
+  animation: expand 1s ease forwards;
 
   .live-call_from {
     color: #054666;

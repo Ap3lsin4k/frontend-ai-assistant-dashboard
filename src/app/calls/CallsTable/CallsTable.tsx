@@ -47,7 +47,7 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
   const handleClick = async (text: string, number: string) => {
     await addNumberToAllowed(number);
 
-    setClickedText(text);
+    setClickedText(text + "ed group");
   };
 
   return (
@@ -68,13 +68,13 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
           <>
             <div
               className="table_btv"
-              onClick={() => handleClick("Trusted", number)}
+              onClick={() => handleClick("Trust", number)}
             >
               Trusted
             </div>
             <div
               className="table_btv"
-              onClick={() => handleClick("Allowed list", number)}
+              onClick={() => handleClick("Allow", number)}
             >
               Allowed
             </div>

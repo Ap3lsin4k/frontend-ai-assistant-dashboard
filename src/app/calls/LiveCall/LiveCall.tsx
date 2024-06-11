@@ -50,23 +50,26 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {/*{liveText.length === 0 ? (*/}
-      {/*  <span className="live-call_placeholder">No income call</span>*/}
-      {/*) : (*/}
-      <div className="live-call_area">
-        {liveText.map((msg, index) => (
-          <div key={index}>
-            <span className="live-call_from">{msg.from_}:</span>{" "}
-            <span dangerouslySetInnerHTML={{ __html: msg.content }} />
-          </div>
-        ))}
-        {message && message.from_ !== "system" && (
-          <div>
-            <span className="live-call_from">{message.from_}:</span>{" "}
-            {message.content}
-          </div>
-        )}
-      </div>
+      {liveText.length === 0 && !message ? (
+        <span className="live-call_placeholder">
+          No incoming call at the time
+        </span>
+      ) : (
+        <div className="live-call_area">
+          {liveText.map((msg, index) => (
+            <div key={index}>
+              <span className="live-call_from">{msg.from_}:</span>{" "}
+              <span dangerouslySetInnerHTML={{ __html: msg.content }} />
+            </div>
+          ))}
+          {message && message.from_ !== "system" && (
+            <div>
+              <span className="live-call_from">{message.from_}:</span>{" "}
+              {message.content}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
