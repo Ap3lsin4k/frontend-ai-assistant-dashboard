@@ -5,7 +5,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { FaMicrophone, FaUserCheck } from "react-icons/fa";
 import { useState } from "react";
 import { RowDataType } from "@/declaration/RowData";
-import DateTimeDisplay from "@/app/calls/CallsTable/DateTimeDisplay";
+import DateTimeDisplay from "@/components/DateTimeDisplay/DateTimeDisplay";
 import {
   addNumberToAllowed,
   addNumberToTrusted,
@@ -49,13 +49,14 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
   };
 
   const handleClick = async (text: string, number: string) => {
-    if (text == "Trust") {
+    if (text === "Allow") {
       await addNumberToAllowed(number);
     } else {
       await addNumberToTrusted(number);
     }
-
+    console.log("refresh before");
     router.refresh();
+    console.log("refresh after");
   };
 
   return (
@@ -68,7 +69,7 @@ const TableRow = ({ rowData }: { rowData: RowDataType }) => {
         {threat}
       </div>
       <div className="btn-wrapper">
-        {group !== "stranger" ? (
+        {group !== "unknown" ? (
           <div>
             {group === "allowed_list" ? "Allowed group" : "Trusted group"}
           </div>

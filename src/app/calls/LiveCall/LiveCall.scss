@@ -1,22 +1,25 @@
 .live-call_placeholder {
-  font-size: 28px;
-  padding-bottom: 20px;
+  margin: 20px;
   color: #4a4a4a;
 }
 
 .live-call_area {
-  font-size: 28px;
+  font-size: 24px;
   height: 0;
   background-color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   padding: 10px;
   overflow-y: scroll;
-  animation: expand 1s ease forwards;
+  animation: expand 2s ease forwards;
 
-  .live-call_from {
-    color: #054666;
-    font-weight: 600;
-    padding-left: 20px;
+  .live-call_msg {
+    margin-bottom: 10px;
+
+    .live-call_from {
+      color: #054666;
+      font-weight: 600;
+      padding-left: 15px;
+    }
   }
 }
 
