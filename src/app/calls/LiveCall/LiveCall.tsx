@@ -9,7 +9,7 @@ interface Message {
 
 const App: React.FC = () => {
   const [liveText, setLiveText] = useState<Message[]>([]);
-  const [message, setMessage] = useState<Message | null>(null);
+  const [message, setMessage] = useState<Message>();
 
   useEffect(() => {
     const ws = new WebSocket(
@@ -19,10 +19,9 @@ const App: React.FC = () => {
     ws.onmessage = (event) => {
       try {
         const data: Message = JSON.parse(event.data);
-        console.log("Received from SERVER ::", data);
         setMessage(data);
 
-        if (data.from_ === "system" && data.content === "NEXTMESSAGE") {
+        if (data.from_ !== message?.from_) {
           setLiveText((prevLiveText) => [
             ...prevLiveText,
             { from_: message?.from_ || "", content: message?.content || "" },
@@ -48,7 +47,7 @@ const App: React.FC = () => {
     return () => {
       ws.close();
     };
-  }, [message]);
+  }, [liveText, message]);
 
   return (
     <div>
@@ -58,14 +57,16 @@ const App: React.FC = () => {
         </div>
       ) : (
         <div className="live-call_area">
-          {liveText.map((msg, index) => (
-            <div key={index} className="live-call_msg">
-              <span className="live-call_from">{msg.from_}:</span>{" "}
-              <span dangerouslySetInnerHTML={{ __html: msg.content }} />
-            </div>
-          ))}
-          {message && message.from_ !== "system" && (
-            <div className="live-call_msg">
+          {liveText
+            .filter((msg) => msg.content !== "NEXTMESSAGE" && msg.from_ !== "")
+            .map((msg, index) => (
+              <div key={index} className="live-call_msg live-text">
+                <span className="live-call_from">{msg.from_}:</span>{" "}
+                <span dangerouslySetInnerHTML={{ __html: msg.content }} />
+              </div>
+            ))}
+          {message && message.content !== "NEXTMESSAGE" && (
+            <div className="live-call_msg msg">
               <span className="live-call_from">{message.from_}:</span>{" "}
               {message.content}
             </div>

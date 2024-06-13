@@ -59,7 +59,8 @@
 
     .btn-wrapper {
       display: flex;
-      justify-content: space-around;
+      gap: 10px;
+      justify-content: center;
       width: 100%;
 
       .table_btv {
