@@ -10,6 +10,7 @@ import { TbMapPinFilled } from "react-icons/tb";
 import QuoteMsg from "@/app/chatbot/quoteMsg";
 import { getLastCalls } from "@/requests/ChatBotRequest";
 import { AllCalls } from "@/declaration/AllCalls";
+import { FaPhone } from "react-icons/fa6";
 
 type Message =
   | { text: string; type: "user"; timestamp: string }
@@ -84,12 +85,31 @@ export default function Home() {
         {todayCalls && (
           <div>
             <br />
+            <FaPhone />
             There is a list:
           </div>
         )}
         {todayCalls.map((call, index) => {
-          return <div key={index}>{call.number}</div>;
+          return (
+            <a
+              href={`tel:${call.number}`}
+              className="msg-contact phone"
+              key={index}
+            >
+              {call.number}
+            </a>
+          );
         })}
+        <div>
+          <br />
+          There is one from
+          <a href="mailto: Dr.Smith@gmail.com" className="msg-contact">
+            <IoMail />
+            <span>Mark Dunford - Psychiatrist</span>
+          </a>
+          @ Springfield University Hospital, that you would be specifically
+          interested about.
+        </div>
       </div>
     </div>,
     <div key="2">
