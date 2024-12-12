@@ -86,7 +86,7 @@ export default function Home() {
           <p>102 Berwick St, London W1F 0PH, UK</p>
           <div className="map">
             <Image
-              src="/map.png"
+              src="/sound-defender/map.png"
               alt="Map"
               fill
               sizes="(min-width: 808px) 50vw, 100vw"

@@ -7,7 +7,7 @@ export default function Header() {
     <header className="header">
       <div className="header-content">
         <Image
-          src="/logo.png"
+          src="/sound-defender/logo.png"
           alt="Logo"
           width={40}
           height={40}

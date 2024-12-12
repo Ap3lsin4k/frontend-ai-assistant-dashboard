@@ -2,9 +2,13 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  output: "export",
   distDir: "dist",
-  images: { unoptimized: true },
+  images: {
+    unoptimized: true, // Disable default image optimization
+  },
+  assetPrefix: "/sound-defender/",
+  basePath: "/sound-defender",
+  output: "export",
 };
 
 module.exports = nextConfig;
