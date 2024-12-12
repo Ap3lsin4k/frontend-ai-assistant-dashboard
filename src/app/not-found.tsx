@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <div className="not-found-container">
       <Image
-        src="https://i.ibb.co/pLnhYWQ/loading.gif"
+        src="/loading.gif"
         alt="Loading..."
         width={50}
         height={50}

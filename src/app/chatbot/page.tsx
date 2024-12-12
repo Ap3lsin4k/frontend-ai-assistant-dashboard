@@ -150,7 +150,7 @@ export default function Home() {
                 <>
                   <div className="messageHeader">
                     <Image
-                      src="https://i.ibb.co/0tDWH0P/avatar.png"
+                      src="/avatar.png"
                       alt="Avatar"
                       height={30}
                       width={30}

@@ -86,12 +86,12 @@ export default function Home() {
           <p>102 Berwick St, London W1F 0PH, UK</p>
           <div className="map">
             <Image
-              src="https://i.ibb.co/2YwdjS1/map.png"
+              src="/map.png"
               alt="Map"
               fill
               sizes="(min-width: 808px) 50vw, 100vw"
               style={{
-                objectFit: "cover", // cover, contain, none
+                objectFit: "cover",
               }}
             />
           </div>

@@ -7,7 +7,7 @@ export default function Header() {
     <header className="header">
       <div className="header-content">
         <Image
-          src="https://i.ibb.co/PCty97T/logo.png"
+          src="/logo.png"
           alt="Logo"
           width={40}
           height={40}
@@ -26,12 +26,7 @@ export default function Header() {
           </button>
           <div className="user-profile">
             <span>Lucy</span>
-            <Image
-              src="https://i.ibb.co/0tDWH0P/avatar.png"
-              alt="Avatar"
-              height={30}
-              width={30}
-            />
+            <Image src="/avatar.png" alt="Avatar" height={30} width={30} />
           </div>
         </div>
       </div>
