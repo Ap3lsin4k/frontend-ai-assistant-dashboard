@@ -150,7 +150,7 @@ export default function Home() {
                 <>
                   <div className="messageHeader">
                     <Image
-                      src="/avatar.png"
+                      src="/sound-defender/avatar.png"
                       alt="Avatar"
                       height={30}
                       width={30}

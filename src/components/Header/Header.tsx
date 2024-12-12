@@ -26,7 +26,12 @@ export default function Header() {
           </button>
           <div className="user-profile">
             <span>Lucy</span>
-            <Image src="/avatar.png" alt="Avatar" height={30} width={30} />
+            <Image
+              src="/sound-defender/avatar.png"
+              alt="Avatar"
+              height={30}
+              width={30}
+            />
           </div>
         </div>
       </div>
