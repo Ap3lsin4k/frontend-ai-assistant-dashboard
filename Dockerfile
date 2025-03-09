@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG NODE_VERSION=12.22.9
+ARG NODE_VERSION=20.0.0
 
 ################################################################################
 # Use node image for base image for all stages.
@@ -71,4 +71,4 @@ EXPOSE 3000
 
 # Run the application.
 #CMD npm start
-CMD 
+CMD npm run dev
