@@ -3,7 +3,7 @@ import { RowDataType } from "@/declaration/RowData";
 export const getCallsHistory = async () => {
   try {
     const res = await fetch(
-      "https://prototypebe.mavn.ai:7000/api/conversations/",
+      "https://prototypebe.mavn.ai:443/api/conversations/",
       {
         next: { revalidate: 1 },
       },
@@ -31,7 +31,7 @@ export const getCallsHistory = async () => {
 export const addNumberToAllowed = async (number: string) => {
   try {
     const res = await fetch(
-      "https://prototypebe.mavn.ai:7000/api/settings/allowed_list",
+      "https://prototypebe.mavn.ai:443/api/settings/allowed_list",
       {
         method: "POST",
         headers: {
@@ -52,7 +52,7 @@ export const addNumberToAllowed = async (number: string) => {
 export const addNumberToTrusted = async (number: string) => {
   try {
     const res = await fetch(
-      "https://prototypebe.mavn.ai:7000/api/settings/trusted_group",
+      "https://prototypebe.mavn.ai:443/api/settings/trusted_group",
       {
         method: "POST",
         headers: {

@@ -1,7 +1,7 @@
 export const getLastCalls = async () => {
   try {
     const res = await fetch(
-      "https://prototypebe.mavn.ai:7000/api/conversations/",
+      "https://prototypebe.mavn.ai:443/api/conversations/",
       {
         next: { revalidate: 1 },
       },
