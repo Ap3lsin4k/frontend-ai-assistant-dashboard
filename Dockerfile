@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine as builder
 
 WORKDIR /app
 
@@ -8,8 +8,16 @@ COPY . .
 # Install dependencies
 RUN npm ci
 
-# Expose port
-EXPOSE 3000
+# Build static site
+RUN npm run build
 
-# Use development mode instead of production
-CMD ["npm", "run", "dev"]
+# Create a minimal nginx container to serve the static files
+FROM nginx:alpine
+
+# Copy the built static files to nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose port
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
