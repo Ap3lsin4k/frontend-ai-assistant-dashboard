@@ -13,7 +13,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const ws = new WebSocket(
-      "wss://prototypebe.mavn.ai:7000/api/conversations/stream",
+      "wss://prototypebe.mavn.ai:443/api/conversations/stream",
     );
 
     ws.onmessage = (event) => {
